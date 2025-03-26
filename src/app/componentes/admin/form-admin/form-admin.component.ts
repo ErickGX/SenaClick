@@ -14,7 +14,7 @@ export class FormAdminComponent {
   filtro: string = '';
 
   usuarios = [
-    { nome: '1', sobrenome: 'Beraldo', email: 'vagner@gmail.com', plano: 'Premium' , },
+    { nome: 'Vagner', sobrenome: 'Beraldo', email: 'vagner@gmail.com', plano: 'Premium' },
     { nome: 'Guilherme', sobrenome: 'Kishida', email: 'guilherme@gmail.com', plano: 'Básico' },
     { nome: 'Daiane', sobrenome: 'Raso', email: 'raso@gmail.com', plano: 'Estudante' },
     { nome: 'Erik', sobrenome: 'GX', email: 'gx@gmail.com', plano: 'Premium' },
@@ -35,7 +35,7 @@ export class FormAdminComponent {
 
   excluirUsuario(usuario: any) {
     if (confirm(`Tem certeza que deseja excluir ${usuario.nome}?`)) {
-      
+      this.usuarios = this.usuarios.filter(u => u !== usuario);
     }
   }
 
