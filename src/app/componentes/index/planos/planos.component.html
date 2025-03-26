@@ -1,0 +1,60 @@
+<section class="section">
+<div>
+  <h2 id="plano" class="titulo">Planos de Assinatura</h2>
+
+</div>
+
+  <div class="precoContainer"> 
+    <div class="card" *ngFor="let plano of planos" [ngClass]="plano.classe">  
+      <div class="cabecalho" [ngClass]="plano.classe">
+
+        <h2 class="tituloPlano">{{ plano.titulo }}</h2>
+        <p class="preco"> {{ formatarPreco(plano.preco) }} <span class="aoMes">/ mês</span></p>
+      </div>
+
+      <button [ngClass]="plano.classe" 
+        routerLink="/cadastro"
+        (click)="selecionarPlano(plano.titulo)"
+        (click)="selecionarId(plano.id)"
+        
+        
+        [queryParams]="{ plano: plano.id}"
+        [queryParams]="{ plano: plano.titulo}">
+        {{ plano.textoBotao }}
+      </button>  
+        
+          <div class="container">
+            
+            <div class="containerDescricao">
+              <div class="icone">
+                <i class="fa-solid fa-bookmark" [ngClass]="plano.classe"></i>
+              </div>
+              <span class="descricao">
+                {{ plano.artigo }}
+              </span> 
+            </div>
+            
+            <div class="containerDescricao">
+              <div class="icone">
+                <i class="fa fa-newspaper" [ngClass]="plano.classe"></i>
+              </div>
+              <span class="descricao">
+                {{ plano.noticia }}
+              </span>
+          </div>
+
+            <div class="containerDescricao">
+              <div class="icone">
+                <i class="fa-solid fa-asterisk" [ngClass]="plano.classe"></i>
+              </div>
+              <span class="descricao">
+                {{ plano.edicao }} 
+              </span>        
+            </div>
+
+          </div>
+          <div class="rodape" [ngClass]="plano.classe"></div>
+    </div>
+  </div>
+  
+</section>

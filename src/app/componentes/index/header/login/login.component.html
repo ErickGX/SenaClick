@@ -1,0 +1,65 @@
+<!-- <section>
+
+    <div class="containerBtn">
+        <div class="areaExclusiva">
+            <p>Àrea exclusiva do Admin</p>
+        </div>
+
+        <button class="btnLogin" (click)="toggleFormulario()">
+            {{ mostrarFormulario ? 'Fechar' : 'Entrar' }}
+        </button>
+</div>
+
+<div class="formLogin" *ngIf="mostrarFormulario">
+    <h3>Área do Administrador</h3>
+    <form action="" method="POST">
+        <label for="id-email">E-mail</label>
+    <div>
+        <input type="email" name="email" id="id-email" placeholder="Digite seu e-mail" autocomplete="on">
+    </div>
+    <label for="id-password">Senha</label>
+    <div>
+        <input type="password" name="password" id="id-password" placeholder="Digite sua senha">
+
+    </div>
+        <a href="#" id="recuperarSenha">Esqueceu a senha?</a>
+        <input routerLink="/admin" type="submit" value="Entrar">
+    </form>
+</div>
+
+</section> -->
+
+
+
+<section>
+
+    <div class="containerBtn">
+        <div class="areaExclusiva">
+            <p>Àrea exclusiva do Admin</p>
+        </div>
+
+        <button class="btnLogin" (click)="toggleFormulario()">
+            {{ mostrarFormulario ? 'Fechar' : 'Entrar' }}
+        </button>
+</div>
+
+<div class="formLogin" *ngIf="mostrarFormulario">
+    <h3>Área do Administrador</h3>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <label for="id-email">E-mail</label>
+    <div>
+        <input type="email" formControlName="email" id="id-email" placeholder="Digite seu e-mail" autocomplete="on">
+    </div>
+    <label for="id-password">Senha</label>
+    <div>
+        <input type="password" formControlName="password" id="id-password" placeholder="Digite sua senha">
+
+    </div>
+        <a href="#" id="recuperarSenha">Esqueceu a senha?</a>
+
+        <input type="submit" value="Entrar">
+    </form>
+</div>
+
+</section>

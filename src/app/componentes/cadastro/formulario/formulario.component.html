@@ -1,0 +1,100 @@
+<div class="container">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" method="POST">
+    <h2>Crie uma conta</h2>
+
+    <div class="inputContainer">
+      <div class="inputArea">
+        <label for="idTipoPlano">Tipo de Plano</label>
+        <input type="text" id="idTipoPlano" formControlName="tipoPlano">
+        <input type="text" id="idGambiarraDoBackend" formControlName="idPlano" [value]="formulario.get('idPlano')?.value" [disabled]="true">
+      </div>
+
+      <div class="inputArea">
+        <label for="idPrimeiroNome">Primeiro Nome</label>
+        <input type="text" id="idPrimeiroNome" formControlName="primeiroNome" required>
+        <div *ngIf="formulario.get('primeiroNome')?.errors?.['required'] && formulario.get('primeiroNome')?.touched">
+          <p class="erro">O primeiro nome é obrigatório.</p>
+        </div>
+      </div>
+
+      <div class="inputArea">
+        <label for="idSobrenome">Sobrenome</label>
+        <input type="text" id="idSobrenome" formControlName="sobrenome" required>
+        <div *ngIf="formulario.get('sobrenome')?.errors?.['required'] && formulario.get('sobrenome')?.touched">
+          <p class="erro">O sobrenome é obrigatório.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="inputArea">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" formControlName="email" required>
+      <div *ngIf="formulario.get('email')?.errors && formulario.get('email')?.touched">
+        <p *ngIf="formulario.get('email')?.errors?.['required']" class="erro">O e-mail é obrigatório.</p>
+        <p *ngIf="formulario.get('email')?.errors?.['email']" class="erro">Informe um e-mail válido.</p>
+      </div>
+    </div>
+
+    <div class="inputArea">
+      <label for="senha">Senha</label>
+      <p class="senha">A senha deve:</p>
+      <ul>
+        <li>Conter pelo menos 8 caracteres</li>
+        <li>Incluir letra maiúscula e minúscula</li>
+        <li>Incluir número e caracter especial (como: !, #, $, etc)</li>
+      </ul>
+      <input type="password" id="idSenha" formControlName="senha">
+      <div *ngIf="formulario.get('senha')?.errors && formulario.get('senha')?.touched">
+        <p *ngIf="formulario.get('senha')?.errors?.['required']" class="erro">A senha é obrigatória.</p>
+        <p *ngIf="formulario.get('senha')?.errors?.['minlength']" class="erro">A senha deve ter pelo menos 8 caracteres.</p>
+        <p *ngIf="formulario.get('senha')?.errors?.['senhaInvalida']" class="erro">
+          A senha deve conter letra maiúscula, minúscula, número e caracter especial.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="tituloMetodo">Método de pagamento</h2>
+    <div class="formaPagamento" [class.disabled]="planoSelecionado === 'Básico'">
+      <label class="opcao" *ngFor="let forma of pagamento">
+        <input
+        [type]="forma.input.type"
+        [name]="forma.input.name"
+        [value]="forma.input.value"
+        [disabled]="planoSelecionado === 'Básico'"
+        formControlName="pagamento"
+        (change)="onPagamentoChange(forma.input.value)">
+        <img [src]="forma.imagem" [alt]="forma.modalidade" class="icone">
+        <p [textContent]="forma.modalidade"></p>
+      </label>
+    </div>
+
+    <!-- Mensagem de erro para pagamento -->
+    <div *ngIf="formulario.get('pagamento')?.invalid && tentouEnviar">
+      <p class="error-message">Selecione uma forma de pagamento.</p>
+    </div>
+
+    <div class="termoCondicoes">
+      <label for="check">
+        <input type="checkbox" id="check" formControlName="termoCondicoes" >
+        Eu li e concordo com os Termos e Condições de uso, bem como com a Política de Privacidade do site.
+      </label>
+    </div>
+
+    <div *ngIf="formulario.get('termoCondicoes')?.errors?.['required'] && tentouEnviar">
+      <p class="erro">Você deve concordar com os Termos e Condições.</p>
+    </div>
+
+    <div class="usoImagem">
+      <label for="checkImagem">
+        <input type="checkbox" id="checkImagem" formControlName="usoImagem">
+        Autorizo o compartilhamento dos meus dados pessoais com a revista universitária para fins de envio de notificações,
+        atualizações e conteúdos relacionados às publicações e eventos acadêmicos.
+      </label>
+    </div>
+    <div class="containerButton">
+      <!-- <button routerLink="/revista" type="submit">Enviar</button> -->
+       <button type="submit">Enviar</button>
+    </div>
+  </form>
+
+</div>

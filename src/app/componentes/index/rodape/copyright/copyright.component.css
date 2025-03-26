@@ -1,0 +1,9 @@
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    color: #fff;
+    background-color: #0052A1;
+    font-size: 0.8rem;
+}

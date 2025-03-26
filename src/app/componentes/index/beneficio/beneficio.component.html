@@ -1,0 +1,14 @@
+<section>
+    <div class="titulo">
+        O que você encontra na SenaClick?
+    </div>
+
+        <div class="beneficio">
+            <div class="card" *ngFor="let benef of beneficios">
+                <i class="fa-solid" [ngClass]="benef.icone"></i>          
+                <p class="tituloCard">{{benef.tituloCard}}</p>
+                <p class="descricao">{{benef.descricao}}</p>
+            </div>
+        </div>
+
+</section>

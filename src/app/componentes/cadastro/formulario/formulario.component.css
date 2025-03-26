@@ -1,0 +1,218 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    margin: 40px auto 0 auto;
+    background: white;
+    padding: 20px 15%;    
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.inputContainer {
+    display: flex;
+    gap: 40px;
+}
+
+.desabilitado { /*cards de pagamento caso o plano seja básico*/
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.inputArea {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    flex: 1;
+}
+
+.inputArea ul li {
+    margin-left: 40px;
+}
+
+#idGambiarraDoBackend{
+    display: none;
+}
+
+.erro, .error-message {
+    color: red;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 1rem;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    font-size: 1rem; 
+    padding: 10px;
+    border: 2px solid #fcae68;
+    border-radius: 5px;
+    outline: none; 
+}
+
+input:focus {
+    border-color: #ff8000;
+}
+
+.senha {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.senha ul {
+    margin-left: 20px;
+}
+
+#idSenha {
+    margin-top: 10px;
+    width: 48%;
+}
+
+/*INÍCIO CARDS PARA PAGAMENTO*/
+.tituloMetodo{
+    margin-top: 60px;
+}
+
+.formaPagamento {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.opcao {
+    position: relative;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    min-width: 230px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.opcao:hover{
+    transform: scale(1.03);
+}
+
+.opcao input {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+.opcao img {
+    width: 65px;
+    height: 65px;
+}
+
+.opcao p {
+    font-size: 1rem;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.opcao input:checked + img {
+    filter: drop-shadow(0px 0px 10px #fcae68);
+}
+/*FIM CARDS PARA PAGAMENTO*/
+
+
+
+/*INÍCIO TERMOS E CONDIÇÕES*/
+.termoCondicoes{
+    padding-top: 40px;
+}
+
+.termoCondicoes label, .usoImagem label{
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.termoCondicoes input[type="checkbox"], .usoImagem input[type="checkbox"] {
+    cursor: pointer;
+}
+
+#checkImagem{
+    margin-top: 20px;
+}
+
+.containerButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 50%;
+}
+
+button{
+    background-color: #004B8D;
+    color: #fff;
+    font-weight: 500;
+    padding: 10px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+/*FIM TERMOS E CONDIÇÕES*/
+form{
+    margin-bottom: 20px;
+}
+
+
+@media (max-width: 1435px) {
+    .container{
+        padding: 20px 10%;
+    }
+}
+
+    @media (max-width: 1024px){
+    .inputContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    #idSenha{
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container{
+        padding: 20px 5%;
+    }
+}

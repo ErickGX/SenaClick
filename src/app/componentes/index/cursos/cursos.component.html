@@ -1,0 +1,23 @@
+<section>
+  <div class="titulo">
+    <h2 id="curso">Cursos Senac - Inscreva-se já</h2>  
+  </div>
+  
+<div class="cursos-container">
+  <div *ngFor="let curso of cursos" class="curso-card">
+    <img [src]="curso.imagem" [alt]="curso.nome">
+    <p class="tipo">{{ curso.tipo }}</p>  
+      
+      <h3>{{ curso.nome }}</h3>
+      
+      <p class="tip">{{ curso.graduacao }}</p>
+      
+      <p class="matricula" [ngClass]="{'aberta': curso.matricula === 'Matrícula Aberta', 'fechada': curso.matricula === 'Matrícula Fechada'}">
+        <i class="fa-solid fa-user-pen"></i> {{ curso.matricula }}
+      </p>
+      
+      <p class="bolsa"><i class="fa-solid fa-book"></i>{{curso.bolsa}}</p>
+    </div>    
+  </div>
+    
+</section>

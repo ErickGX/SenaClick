@@ -1,0 +1,14 @@
+@media (max-width: 508px) {
+    .container {
+      justify-content: space-around;  
+      gap: 5px;
+    }   
+}
+
+@media (max-width: 425px) {
+  .container{
+    padding: 0px 5%; 
+  } 
+}
+
+

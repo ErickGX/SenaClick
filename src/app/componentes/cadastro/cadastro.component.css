@@ -1,0 +1,6 @@
+
+:host ::ng-deep app-menu nav ul li:nth-child(8) {
+    display: none;
+  }
+  
+
