@@ -68,18 +68,24 @@ export class LoginComponent {
 
     const dados = this.loginForm.value;
 
+    console.log('FILHO DA PUTA:', JSON.stringify(dados, null, 2));
+
       // Enviar para a API chamando a funcão na Service
       this.adminService.loginAdmin(dados).subscribe({
         next: (response) => {
           console.log('Dados enviados com sucesso!', response);
           alert('Login realizado com sucesso!');
-  
+
           // Redireciona o usuário para outra página após sucesso , usando Router chamado lá no import e no contrutor
           this.router.navigate(['/admin']); // Substitua '/outra-pagina' pelo caminho desejado
         },
         error: (error) => {
-          console.error('Erro ao cadastrar usuário:', error);
-  
+
+         console.log('Dados recebidos no TS:', JSON.stringify(dados, null, 2));
+
+
+          console.error('Erro ao logar :', error);
+
           // Aqui, tratei os erros vindos do backend
           if (error.status === 404) {
             // Erro de e-mail já cadastrado
@@ -96,6 +102,6 @@ export class LoginComponent {
         },
       });
 
-    
+
   }
 }

@@ -13,6 +13,8 @@ export class AdminService {
 
 
   public loginAdmin(dados: any): Observable<any>{
+    console.log('Service porra:', JSON.stringify(dados, null, 2));
+
     return this.http.post(`${this.apiUrl}/admin/login`, dados);
   }
 
