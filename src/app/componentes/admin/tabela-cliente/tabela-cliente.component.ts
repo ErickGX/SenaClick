@@ -4,47 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../../services/admin/admin.service';
 
 @Component({
-  selector: 'app-form-admin',
+  selector: 'app-tabela-cliente',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './form-admin.component.html',
-  styleUrl: './form-admin.component.css',
+  templateUrl: './tabela-cliente.component.html',
+  styleUrl: './tabela-cliente.component.css',
 })
-export class FormAdminComponent implements OnInit {
-  filtro: string = '';
-
+export class TabelaClienteComponent implements OnInit {
   constructor(private admService: AdminService) {}
 
-  assinaturas: any[] = []; // Variável que armazenará os dados da API
 
-  // usuarios = [
-  //   {
-  //     nome: 'Vagner',
-  //     sobrenome: 'Beraldo',
-  //     email: 'vagner@gmail.com',
-  //     plano: 'Premium',
-  //   },
-  //   {
-  //     nome: 'Guilherme',
-  //     sobrenome: 'Kishida',
-  //     email: 'guilherme@gmail.com',
-  //     plano: 'Básico',
-  //   },
-  //   {
-  //     nome: 'Daiane',
-  //     sobrenome: 'Raso',
-  //     email: 'raso@gmail.com',
-  //     plano: 'Estudante',
-  //   },
-  //   { nome: 'Erik', sobrenome: 'GX', email: 'gx@gmail.com', plano: 'Premium' },
-  //   {
-  //     nome: 'Davi',
-  //     sobrenome: 'Roque',
-  //     email: 'roqueiro@gmail.com',
-  //     plano: 'Básico',
-  //   },
-  // ];
 
+  clientes: any[] = []; // Variável que armazenará os dados da API
 
   ngOnInit() {
     this.admService.getAssinaturas().subscribe({
@@ -52,7 +23,7 @@ export class FormAdminComponent implements OnInit {
       next: (data: any[]) => {
         //console.log('Dados recebidos:', data);
 
-        this.assinaturas = data;
+        this.clientes = data;
       },
 
       // `error` é chamado se houver algum erro na requisição (exemplo: erro 404 ou problema no servidor)

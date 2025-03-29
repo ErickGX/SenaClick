@@ -1,123 +1,163 @@
+@import url('../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css');
+/* Estilo geral */
+section {
+  padding: 20px;
+  background-color: #f8f9fa;
+  /* Fundo claro para contraste */
+  font-family: Arial, sans-serif;
+  width: 1200px;
+  margin: 0 auto 50px;
+}
+
 .tituloSaudacao {
-    color: #333;
-    margin: 50px 30px;
-    padding: 0 10%;
-    color: #808080;
-  }
+  font-size: 2rem;
+  color: #343a40;
+  /* Cor escura para contraste */
+  margin-bottom: 20px;
+  text-align: center;
+}
 
-  section{
-    width: 1200px;
-    margin: 0 auto 50px;
-  }
+.container {
+  display: flex;
+  gap: 20px;
+  /* Espaço entre os painéis */
+}
 
-  .container{
-    display: flex;
-    justify-content: center;
+.controles {
+  width: 200px;
+  /* Largura fixa para o painel lateral */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+  padding: 15px;
+}
+
+.painel {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.painel i {
+  font-size: 2rem;
+  color: #007bff;
+  /* Ícone azul para destaque */
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+  /* Azul mais escuro no hover */
+}
+
+.dados {
+  flex-grow: 1;
+  /* Ocupa o espaço restante */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 1000px;
+  height: 800px;
+}
+
+.consulta {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+}
+
+.consulta p {
+  margin-right: 10px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.filtro {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.container.mt-4{
+  justify-content: center;
     align-items: center;
-    
-  }
+    width: 80%;
+}
 
-  .controles{
-    display: flex;
+.filtro:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Tabela personalizada */
+.table-responsive {
+  overflow-x: auto;
+  border: co;
+}
+
+.table {
+  font-size: 0.9rem;
+  /* Tamanho de fonte menor para melhor ajuste */
+  border-collapse: collapse;
+  width: 100%;
+  /* Largura total da tabela */
+  border: 1px solid #dee2e6; /* Adiciona borda geral à tabela */
+}
+
+.table thead th {
+  background-color: #007bff;
+  /* Cabeçalho azul */
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #dee2e6; /* Adiciona borda às células do cabeçalho */
+    padding: 50px;
+}
+
+.table tbody td {
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #dee2e6; /* Adiciona borda às células do corpo */
+    padding: 50px;
+
+}
+
+.table tbody tr:hover {
+  background-color: #f1f1f1;
+  /* Destaque ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
     flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    width: 200px;
-    height: 800px;
-    gap: 20px;
+    /* Empilha os painéis verticalmente */
   }
 
-  .painel{
-    display: flex;
-    margin-top: 70px;
-    margin-bottom: 10px;
-    color: #808080;
-  }  
-
-  .painel i{
-    margin-right: 10px;
-    color: #808080;
-  }
-
-  .controles button{
-    width: 150px;
-    height: 50px;
-    color: #fff;
-    background-color: #808080;
-  }
-
-  button:last-child{
-    margin-bottom: 50px;
-  }
-  .dados{
-    display: flex;
-    flex-direction: column;
-    width: 1000px;
-    height: 800px;
-  }
-
-  .consulta{
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    align-items: center;
-    height: 30px;
-  }
-
-  
-  
-
-  p{
-    margin-top: 15px;
-    margin-right: 10px;
-    font-size: 1rem;
-    font-weight: 500;
+  .controles {
+    width: 100%;
+    /* Ocupa toda a largura */
   }
 
   .filtro {
-    display: block;
-    margin: 15px 10px 0px 0;
-    padding: 8px;
     width: 100%;
-    max-width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    /* Ocupa toda a largura */
   }
-
-  table {
-    width: 100%;
-    margin: 40px auto 10px auto;
-    border-collapse: collapse;
-  }
-
-  
-
-  th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-  }
-
- 
-  th {
-    background-color: #666;
-    color: white;
-  }
-
-  button {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .alterar {
-    
-    background-color: #17a2b8;
-    color: white;
-  }
-  
-  .excluir {
-    background-color: #dc3545;
-    color: white;
-  }
+}

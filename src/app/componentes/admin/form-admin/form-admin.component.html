@@ -10,37 +10,43 @@
       <button>Plano</button>
       <button>Clientes</button>
     </div>
+
     <div class="dados">
-      <div class="tabelaContainer">  
+      <div class="tabelaContainer">
         <div class="consulta">
           <p>Consulta: </p>
           <input type="text" [(ngModel)]="filtro" placeholder="Buscar usuário..." class="filtro" />
         </div>
-        
-        <table class="tabelaUsuarios">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Sobrenome</th>
-              <th>Email</th>
-              <th>Tipo de Plano</th>
-              <th>Editar</th>
-              <th>Excluir</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let usuario of usuariosFiltrados">
-              <td>{{ usuario.nome }}</td>
-              <td>{{ usuario.sobrenome }}</td>
-              <td>{{ usuario.email }}</td>
-              <td>{{ usuario.plano }}</td>
-              <td><button class="alterar" (click)="alterarUsuario(usuario)">Alterar</button></td>
-              <td><button class="excluir" (click)="excluirUsuario(usuario)">Apagar</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-    </div>
-  </div>
+
+        <div class="container mt-4">
+
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Título</th>
+                  <th>Pagamento</th>
+                  <th>Preço</th>
+                  <th>Data da Assinatura</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of assinaturas">
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.nome }}</td>
+                  <td>{{ item.titulo }}</td>
+                  <td>{{ item.pagamento }}</td>
+                  <td>R$ {{ item.preco }}</td>
+                  <td>{{ item.data_assinatura }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> <!-- Fecha a segunda div.container -->
+
+      </div> <!-- Fecha a div.tabelaContainer -->
+    </div> <!-- Fecha a div.dados -->
+  </div> <!-- Fecha a div.container principal -->
 </section>
