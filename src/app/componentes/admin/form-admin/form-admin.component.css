@@ -106,43 +106,7 @@ button:hover {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Tabela personalizada */
-.table-responsive {
-  overflow-x: auto;
-  border: co;
-}
 
-.table {
-  font-size: 0.9rem;
-  /* Tamanho de fonte menor para melhor ajuste */
-  border-collapse: collapse;
-  width: 100%;
-  /* Largura total da tabela */
-  border: 1px solid #dee2e6; /* Adiciona borda geral à tabela */
-}
-
-.table thead th {
-  background-color: #007bff;
-  /* Cabeçalho azul */
-  color: white;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid #dee2e6; /* Adiciona borda às células do cabeçalho */
-    padding: 50px;
-}
-
-.table tbody td {
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid #dee2e6; /* Adiciona borda às células do corpo */
-    padding: 50px;
-
-}
-
-.table tbody tr:hover {
-  background-color: #f1f1f1;
-  /* Destaque ao passar o mouse */
-}
 
 /* Responsividade */
 @media (max-width: 768px) {

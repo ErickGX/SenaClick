@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../../services/admin/admin.service';
+import { TabelaClienteComponent } from '../tabela-cliente/tabela-cliente.component';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './form-admin.component.html',
   styleUrl: './form-admin.component.css',
+  encapsulation: ViewEncapsulation.None, // Desativa o encapsulamento de estilos (necessário apenas se houver problemas com o CSS do Bootstrap)
 })
 export class FormAdminComponent implements OnInit {
   filtro: string = '';
@@ -44,7 +47,6 @@ export class FormAdminComponent implements OnInit {
   //     plano: 'Básico',
   //   },
   // ];
-
 
   ngOnInit() {
     this.admService.getAssinaturas().subscribe({

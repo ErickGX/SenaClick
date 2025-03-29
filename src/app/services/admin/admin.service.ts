@@ -16,8 +16,8 @@ export class AdminService {
     return this.http.post(`${this.apiUrl}/admin/login`, dados);
   }
 
-  public deleteUser(dados: any): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/cliente/${dados}`);
+  public excluirCliente(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/cliente/${id}`);
   }
 
   public getClientes(): Observable<any[]> {
@@ -26,5 +26,9 @@ export class AdminService {
 
   public getAssinaturas(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/assinaturas`);
+  }
+
+  atualizarCliente(id: number, cliente: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/cliente/${id}`, cliente);
   }
 }
