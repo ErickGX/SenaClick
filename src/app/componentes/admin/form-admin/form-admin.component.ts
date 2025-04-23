@@ -8,7 +8,7 @@ import { RouterModule, Router } from '@angular/router';
 @Component({
   selector: 'app-form-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, TabelaClienteComponent],
   templateUrl: './form-admin.component.html',
   styleUrl: './form-admin.component.css',
   encapsulation: ViewEncapsulation.None, // Desativa o encapsulamento de estilos (necessário apenas se houver problemas com o CSS do Bootstrap)
@@ -19,6 +19,13 @@ export class FormAdminComponent implements OnInit {
   constructor(private admService: AdminService) {}
 
   assinaturas: any[] = []; // Variável que armazenará os dados da API
+
+
+  exibirTabela: 'assinaturas' | 'clientes' | 'planos' = 'assinaturas'; // padrão
+
+  mostrarTabela(tabela: 'assinaturas' | 'clientes' | 'planos') {
+    this.exibirTabela = tabela;
+  }
 
   // usuarios = [
   //   {
