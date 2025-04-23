@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="imagemBackGround"></div>
+    <div class="inscricao">
+        <div class="titulo">
+            <h2>Cadastre-se</h2>
+            <h2>em nossa Newsletter</h2>
+        </div>
+        <div class="switch-container" (click)="toggleInscricao()">
+            <div class="convite"><p>Participe!</p><p>Bem-Vindo(a)</p></div>
+            <div class="switch" [class.ativo]="inscrito">
+                <span class="texto">{{ textoBotao }}</span>
+            </div>      
+        </div>        
+    </div>
+    <div class="img">
+        <img src="../../../../assets/revista/newsletter.png" alt="">
+    </div>
+</div>

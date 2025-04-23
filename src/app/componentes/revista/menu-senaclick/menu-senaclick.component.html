@@ -1,0 +1,30 @@
+<header>
+    <div class="menu-container">
+      
+      <div class="hamburger" (click)="toggleMenu()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <nav [class.active]="isMenuOpen"> 
+        <ul>
+            
+          <li><a href="#">Senac Talks</a></li>
+          <li><a href="#">Fauna & Flora</a></li>
+          <li><a href="#">Cursos</a></li>
+          <li><a href="#">Quadro de Avisos</a></li>
+          <li><a href="#">Empreenda</a></li>
+          <li><a href="#">Kapiva Atlética</a></li>
+          <li><a href="#">Biblioteca</a></li>
+          <li><a href="#">Parceiros</a></li>
+          <li class="mobile"><a href="#">Hotéis</a></li>
+          <li class="mobile"><a href="#">Editora</a></li>
+          <li class="mobile"><a href="#">EAD</a></li>
+          <li class="mobile"><a href="#">Atendimento Corporativo</a></li>
+          <li class="mobile"><a href="#"></a><input type="text" placeholder="Busca"  class="busca"><i class="fa-solid fa-magnifying-glass"></i></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  

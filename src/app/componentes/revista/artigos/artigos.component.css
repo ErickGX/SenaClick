@@ -1,0 +1,233 @@
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 0 50px;
+  box-sizing: border-box;
+  /* background-color: #F7F7F7; */
+  background: linear-gradient(135deg, 
+        #F7F7F7 85%,  /* Cinza predominante até 85% */
+        #004B8D 85%,  /* Azul inicia exatamente onde o azul termina */
+        #004B8D 93%,  /* Azul vai até 93% */
+        #CFDFEA 93%,  /* Azul claro começa onde o vermelho termina */
+        #CFDFEA 100%  /* Azul claro preenche até o final */
+    );
+}
+
+.titulo h2{
+  position: relative;
+  bottom: 540px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #808080;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: 
+      "principal secundario1 secundario2"
+      "principal secundario3 secundario4";
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.principal {
+  grid-area: principal;
+  background-color: white;
+  padding: 10px 15px 0 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.principal:hover{
+  transform: scale(1.03);
+}
+
+.live{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  height: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.fa-circle-dot{
+  margin-right: 5px;
+  color: red;
+}
+
+iframe{
+  border: none;
+  border-radius: 10px;
+}
+
+/* .desativado {
+  pointer-events: none; 
+  opacity: 0.5;
+  background-color: #808080;
+} */
+
+.container {
+  display: contents;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:nth-child(1) { grid-area: secundario1; }
+.card:nth-child(2) { grid-area: secundario2; }
+.card:nth-child(3) { grid-area: secundario3; }
+.card:nth-child(4) { grid-area: secundario4; }
+
+.card:hover{
+  transform: scale(1.05);
+}
+
+img {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+}
+
+.imgSecundario{
+  width: 290px;
+  height: 130px;
+}
+
+.categoria {
+  position: relative;
+  left: 10px;
+  bottom: 40px;
+  background-color: orange;
+  color: white;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.data {
+  color: gray;
+  font-size: 0.8rem;
+  margin-top: -15px;
+  margin-left: 15px;
+}
+
+
+h3{
+  font-size: 1rem;
+  padding: 10px 0;
+}
+
+h2, h3{
+  margin-left: 15px;
+  font-weight: 500;
+}
+
+
+@media (max-width: 1450px) {
+    
+  .grid-container {
+      grid-template-areas: 
+          "principal principal"
+          "principal principal"
+          "secundario1 secundario2"
+          "secundario3 secundario4";
+      grid-template-columns: 1fr 1fr;
+      max-width: 600px;
+  }
+
+  .titulo h2{
+    bottom: 1070px;
+    left: 0%;
+    padding-top: 30px;
+  }
+
+  .principal{
+    width: 580px;
+    margin: 20px auto;
+  }
+
+  iframe{
+    width: 550px;
+  }
+  .card{
+    width: 290px;
+    margin: 0 auto;
+  }
+
+} 
+
+
+@media (max-width: 720px) {
+  .grid-container {
+    grid-template-areas: 
+        "principal"
+        "secundario1" 
+        "secundario2"
+        "secundario3" 
+        "secundario4";
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+    width: 100%;     
+}
+
+iframe{
+  width: 270px;
+  height: auto;
+}
+
+  .titulo h2{
+    bottom: 1420px;
+    
+  }
+
+  .principal{
+    width: 300px;
+    height: auto;
+    
+  }
+
+  .card{
+    width: 300px;
+  }
+
+  img, .imgSecundario{
+    width: 300px;
+  }
+
+  
+}
+
+
+@media (max-width: 425px) {
+  .principal{
+    width: 280px;   
+  }
+
+  img, .imgSecundario{
+    width: 280px;
+  }
+
+  iframe{
+    width: 250px;
+  }
+  
+  .card{
+    width: 280px;
+    
+  } 
+
+}

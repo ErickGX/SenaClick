@@ -1,0 +1,128 @@
+.container{
+  position: relative;
+  background: linear-gradient(45deg, #004B8D 50%, #FFF 50%);
+    /* background: linear-gradient(to right, #004B8D 55%, #fff 55%); */
+    margin: 0 auto;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+
+.imagemBackGround {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  width: 65px;
+  height: 80px;
+  /* background: url('../../../../assets/revista/news.png') no-repeat center/cover; */
+  opacity: 0.2;
+  transform: rotate(-10deg);
+}
+
+.inscricao{
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo{
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #FFF;
+}
+
+.convite{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    color: #B56F4C;
+    font-weight: 700;
+}
+
+.switch-container {
+    width: 300px;
+    height: 40px;
+    margin-bottom: -100px;
+    background: #ffece0;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .switch {
+    width: 150px;
+    height: 40px;
+    background: #ff914d;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    right: 0;
+    transition: transform 0.4s ease-in-out, background 0.3s;
+  }
+  
+  .switch.ativo {
+    transform: translateX(-150px);
+    background: #ff914d;
+  }
+
+  .texto {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1450px) {
+    .imagemBackGround {
+      left: 7%;
+    }          
+  }
+
+  @media (max-width: 1200px) {
+    .imagemBackGround {
+      top: 10%;
+      left: 5%;
+      
+    }
+  }
+  @media (max-width: 1024px) {
+    .img{
+      display: none;
+    }
+    
+    .container {
+     padding: 180px;
+     background: linear-gradient(45deg, #004B8D 65%, #FFF 65%);
+    }
+    
+  }
+
+  @media (max-width: 900px) {
+    .titulo{
+      font-size: 1rem;
+    }
+    .container {
+      background: linear-gradient(45deg, #004B8D 75%, #FFF 75%);
+     }
+  }
+
+  @media (max-width: 360px) {
+    .titulo{
+      margin-left: -30px;
+     }
+ 
+     .switch-container{
+       margin-left: -40px;
+     }
+  
+      
+  }
+

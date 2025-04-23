@@ -18,10 +18,12 @@ h3{
   text-align: center;
   width: 100%;
   margin: 10px 0 20px;
+  color: #808080;
 }
 
 .areaExclusiva{
   font-size: 0.8rem;
+  color: #808080;
 }
 
 .btnLogin {
@@ -42,20 +44,19 @@ h3{
     flex-direction: column;
     z-index: 0;
     top: 115%;
-    left: 68%;
-
+    left: 60%;
     width: 300px;
     margin-top: 15px;
     padding: 15px;
     background: white;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    
   }
   
   .formLogin label {
     font-weight: bold;
     margin-bottom: 5px;
+    color: #808080;
   }
   
   .formLogin input[type="email"],
@@ -65,6 +66,7 @@ h3{
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    color: #808080;
   }
   
   #recuperarSenha {
@@ -86,6 +88,7 @@ h3{
     background-color: #F7941E;
     color: white;
     font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -97,7 +100,32 @@ h3{
   
 
 
+  @media (max-width: 950px) {
+    .formLogin {
+      left: 55%;
+    }
+  }
 
+
+  @media (max-width: 800px) {
+    .formLogin {
+      left: 55%;
+    }
+  }
+
+
+  @media (max-width: 700px) {
+    .formLogin {
+      left: 50%;
+    }
+  }
+
+
+  @media (max-width: 625px) {
+    .formLogin {
+      left: 10%;
+    }
+  }
 
   @media (max-width: 426px) {
     .areaExclusiva{
@@ -109,7 +137,7 @@ h3{
     }
     
     .formLogin {
-        right: 3%;
+      left: 3%;
     }
     
     .btnLogin {

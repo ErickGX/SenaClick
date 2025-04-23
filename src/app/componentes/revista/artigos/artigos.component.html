@@ -1,0 +1,38 @@
+
+<section>
+  <div class="grid-container">  
+    <div class="titulo">
+      <h2>Últimos artigos</h2>
+    </div> 
+    <!-- *ngIf="planoService.getPlano() !== 'Básico'" [ngClass]="{'desativado': planoSelecionadoRevista === 'Básico'}" -->
+    <div class="principal" >
+      <p class="live"><i class="fa-regular fa-circle-dot"></i>Live</p>
+      <iframe  
+        width="580" 
+        height="315" 
+        src="https://www.youtube.com/embed/k82RwXqZHY8" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+      </iframe>
+
+      <p class="categoria">Palestra</p>
+      <p class="data">24/04/2025</p>
+      <h3>Excluivo para assinantes: assista ao <strong>CEO da NVIDIA, Jensen Huang</strong>. Avanços revolucionários em IA, velocidade da computação e mais....</h3>
+    </div>
+    
+    <div class="container">
+      <div *ngFor="let artigo of artigos" class="card">
+        <div>
+          <img [src]="artigo.imagem" [alt]="artigo.txtAlternativo" id="x" class="imgSecundario">
+          <p class="categoria">{{ artigo.categoria }}</p>
+        </div>
+        <div>
+          <p class="data">{{ artigo.data }}</p>  
+          <h3>{{ artigo.descricao }}</h3>
+        </div>
+      </div>    
+    </div>
+  </div>
+</section>

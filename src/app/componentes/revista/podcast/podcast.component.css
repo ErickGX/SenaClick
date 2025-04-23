@@ -1,0 +1,230 @@
+.titulo h2{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    padding: 100px 0px 20px 11%;
+    font-size: 1.5rem;
+    background-color: #F7F7F7;
+    color: #808080;    
+}
+
+.container {
+    position: relative;
+    display: flex;  
+    flex-wrap: wrap;
+    max-width: 100%;  
+    gap: 10px;
+    background-color: #F7F7F7;
+    padding: 20px 10%!important;
+  }
+
+  .headset {
+    position: absolute;
+    width: 150px; /* Tamanho das imagens */
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Configuração das imagens de background */
+.img1 {
+    /* background-image: url('../../../../assets/revista/headset.png'); */
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    top: -90px;
+    left: 250px;
+    transform: rotate(135deg);
+    opacity: 0.2;
+}
+
+.img2 {
+  /* background-image: url('../../../../assets/revista/microfone.png'); */
+  position: absolute;
+  width: 150px;
+  height: 75px;
+  top: -40px;
+  right: 120px;
+  transform: rotate(20deg);
+  opacity: 0.2;
+  }
+
+  .img3 {
+    /* background-image: url('../../../../assets/revista/headset.png'); */
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    top: 390px;
+    left: 700px;
+    transform: rotate(-25deg);
+    opacity: 0.2;
+    }
+    
+  .img4 {
+    /* background-image: url('../../../../assets/revista/microfone.png'); */
+    position: absolute;
+    width: 150px;
+    height: 45px;
+    top: 815px;
+    left: 150px;
+    transform: rotate(-15deg);
+    opacity: 0.2;
+    } 
+         
+
+  .card {
+    margin: 0 auto;
+    width: 280px;
+    height: 380px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    margin-bottom: 25px; 
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  iframe{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 10px 0;
+    color: #333;
+    padding: 0 10px;
+  }
+
+  .data{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    padding-top: 10px;
+    padding-left: 15px;
+  }
+
+  .card p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 1rem;
+  }
+
+.botao {
+    font-size: 1rem;
+    font-weight: 500;
+    right: 15px;
+    bottom: 5px;
+    position: absolute; 
+    padding: 10px 25px;
+    background-color: #004B8D;
+}
+
+.card p.botao{
+    color: #fff;
+
+}
+
+
+@media (max-width: 1440px) {
+.img4 {
+    height: 75px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .img3 {
+    top: 690px;
+    left: 460px;
+    }
+    
+  .img4 {
+    top: 1190px;
+    left: 430px;
+    } 
+  
+}
+
+
+  @media (max-width: 920px) {
+    .container {
+    overflow-y: auto;
+    height: 500px;
+  }
+
+  .img1 {
+    top: 20px;
+    left: 50px;
+  }
+
+  .img2 {
+  top: 400px;
+  left: 350px;
+  }
+
+  .img3 {
+    top: 790px;
+    left: 420px;
+    }
+    
+  .img4 {
+    top: 1315px;
+    left: 420px;
+    } 
+}
+
+  @media (max-width: 768px) {
+  .container {
+    padding: 20px 5%;
+  }
+
+  .img1 {
+    top: 20px;
+    left: 50px;
+  }
+
+  .img2 {
+  top: 400px;
+  left: 350px;
+  }
+
+  .img3 {
+    top: 790px;
+    left: 320px;
+    }
+    
+  .img4 {
+    top: 1315px;
+    left: 310px;
+    }
+   
+}
+
+@media (max-width: 650px) {    
+  .img2 {
+    top: 400px;
+    left: 260px;
+    }
+  
+  .img4 {
+    top: 3100px;
+    left: 10px;
+    }
+   
+}
+
+  @media (max-width: 425px) {
+    .titulo h2{
+      font-size: 1.5rem;
+  }
+  .img1, .img2, .img3, .img4 {
+    display: none;
+  }
+
+  }
