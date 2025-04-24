@@ -31,4 +31,8 @@ export class AdminService {
   atualizarCliente(id: number, cliente: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/cliente/${id}`, cliente);
   }
+  // planos para o crud listar planos disponiveis
+  public getPlanosCrud(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/planos`);
+  }
 }

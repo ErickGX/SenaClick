@@ -1,1 +1,26 @@
-<p>tabela-plano works!</p>
+<div class="container mt-4 tabela-hidden">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+
+            <thead class="table-dark">
+                <tr>
+                  <th>ID Plano</th>
+                  <th>Titulo</th>
+                  <th>Preco</th>
+                  <th>Artigo</th>
+                  <th>Noticia</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let plano of planoscrud">
+                  <td>{{ plano.id }}</td>
+                  <td>{{ plano.titulo }}</td>
+                  <td>R$ {{ plano.preco }}</td>
+                  <td>{{ plano.artigo }}</td>
+                  <td>{{ plano.noticia }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> <!-- Fecha a segunda div.container -->

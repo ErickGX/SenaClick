@@ -1,7 +1,7 @@
 .container{
   position: relative;
   background: linear-gradient(45deg, #004B8D 50%, #FFF 50%);
-    /* background: linear-gradient(to right, #004B8D 55%, #fff 55%); */
+    background: linear-gradient(to right, #004B8D 55%, #fff 55%);
     margin: 0 auto;
     padding: 10px 0;
     display: flex;
@@ -16,7 +16,7 @@
   left: 10%;
   width: 65px;
   height: 80px;
-  /* background: url('../../../../assets/revista/news.png') no-repeat center/cover; */
+  background: url('../../../../assets/revista/news.png') no-repeat center/cover;
   opacity: 0.2;
   transform: rotate(-10deg);
 }
@@ -54,7 +54,7 @@
     cursor: pointer;
     transition: background 0.3s ease-in-out;
   }
-  
+
   .switch {
     width: 150px;
     height: 40px;
@@ -69,7 +69,7 @@
     right: 0;
     transition: transform 0.4s ease-in-out, background 0.3s;
   }
-  
+
   .switch.ativo {
     transform: translateX(-150px);
     background: #ff914d;
@@ -83,26 +83,26 @@
   @media (max-width: 1450px) {
     .imagemBackGround {
       left: 7%;
-    }          
+    }
   }
 
   @media (max-width: 1200px) {
     .imagemBackGround {
       top: 10%;
       left: 5%;
-      
+
     }
   }
   @media (max-width: 1024px) {
     .img{
       display: none;
     }
-    
+
     .container {
      padding: 180px;
      background: linear-gradient(45deg, #004B8D 65%, #FFF 65%);
     }
-    
+
   }
 
   @media (max-width: 900px) {
@@ -118,11 +118,11 @@
     .titulo{
       margin-left: -30px;
      }
- 
+
      .switch-container{
        margin-left: -40px;
      }
-  
-      
+
+
   }
 

@@ -10,7 +10,7 @@
       <button (click)="mostrarTabela('planos')">Plano</button>
       <button (click)="mostrarTabela('clientes')">Clientes</button>
     </div>
-    
+
 
     <div class="dados">
       <div class="tabelaContainer">
@@ -48,6 +48,7 @@
         </div> <!-- Fecha a segunda div.container -->
 
         <app-tabela-cliente *ngIf="exibirTabela === 'clientes'"></app-tabela-cliente>
+        <app-tabela-plano-crud *ngIf="exibirTabela === 'planos'"></app-tabela-plano-crud>
       </div> <!-- Fecha a div.tabelaContainer -->
     </div> <!-- Fecha a div.dados -->
   </div>

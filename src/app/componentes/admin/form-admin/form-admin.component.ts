@@ -4,11 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../../services/admin/admin.service';
 import { TabelaClienteComponent } from '../tabela-cliente/tabela-cliente.component';
 import { RouterModule, Router } from '@angular/router';
+import { TabelaPlanoComponent } from "../tabela-plano/tabela-plano.component";
 
 @Component({
   selector: 'app-form-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, TabelaClienteComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    TabelaClienteComponent,
+    TabelaPlanoComponent,
+  ],
   templateUrl: './form-admin.component.html',
   styleUrl: './form-admin.component.css',
   encapsulation: ViewEncapsulation.None, // Desativa o encapsulamento de estilos (necessário apenas se houver problemas com o CSS do Bootstrap)
@@ -20,13 +27,11 @@ export class FormAdminComponent implements OnInit {
 
   assinaturas: any[] = []; // Variável que armazenará os dados da API
 
-
   exibirTabela: 'assinaturas' | 'clientes' | 'planos' = 'assinaturas'; // padrão
 
   mostrarTabela(tabela: 'assinaturas' | 'clientes' | 'planos') {
     this.exibirTabela = tabela;
   }
-
   // usuarios = [
   //   {
   //     nome: 'Vagner',

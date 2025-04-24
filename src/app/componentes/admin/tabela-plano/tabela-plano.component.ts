@@ -1,11 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { AdminService } from '../../../services/admin/admin.service';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-tabela-plano',
-  imports: [],
+  selector: 'app-tabela-plano-crud',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './tabela-plano.component.html',
-  styleUrl: './tabela-plano.component.css'
+  styleUrl: './tabela-plano.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
-export class TabelaPlanoComponent {
+export class TabelaPlanoComponent implements OnInit {
+  constructor(private adminService: AdminService) {}
 
+  planoscrud: any[] = []; // Certifique-se de que a propriedade está declarada
+
+  ngOnInit(): void {
+    this.adminService.getPlanosCrud().subscribe({
+      next: (data: any[]) => {
+        //console.log('Dados recebidos:', data);
+
+        this.planoscrud = data;
+      },
+
+      // `error` é chamado se houver algum erro na requisição (exemplo: erro 404 ou problema no servidor)
+      error: (error) => {
+        console.error('Erro ao buscar planos:', error);
+      },
+
+      // `complete` é chamado quando o Observable finaliza, útil para executar ações após a requisição ser concluída
+      complete: () => {
+        console.log('Requisição concluída com sucesso.');
+      },
+    });
+  }
 }
