@@ -1,7 +1,7 @@
 .container{
   position: relative;
-  background: linear-gradient(45deg, #004B8D 50%, #FFF 50%);
-    background: linear-gradient(to right, #004B8D 55%, #fff 55%);
+    background: linear-gradient(45deg, #004B8D 50%, #FFF 50%);
+    /* background: linear-gradient(to right, #004B8D 55%, #fff 55%); */
     margin: 0 auto;
     padding: 10px 0;
     display: flex;
