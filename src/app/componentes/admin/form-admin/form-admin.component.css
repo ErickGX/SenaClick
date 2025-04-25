@@ -112,6 +112,17 @@ th, td {
   vertical-align: middle;
 }
 
+
+.table-responsive {
+  max-height: 500px; /* Altura máxima da tabela */
+  overflow-y: auto; /* Adiciona rolagem vertical */
+}
+
+thead.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
 /* Responsividade */
 @media (max-width: 768px) {
   .container {
