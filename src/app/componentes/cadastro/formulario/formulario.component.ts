@@ -154,46 +154,60 @@ export class FormularioComponent implements OnInit {
 
   //modificado para processar corretamente as respostas de erro/sucesso da API baseado em Codigos HTTPS
   onSubmit() {
-    this.tentouEnviar = true; // Indica que o usuário tentou enviar o formulário
-    this.formulario.markAllAsTouched(); // Marca todos os campos como "tocados"
-    this.formulario.get('pagamento')?.updateValueAndValidity(); // Atualiza a validade do campo "pagamento"
+  this.tentouEnviar = true; // Indica que o usuário tentou enviar o formulário
+  this.formulario.markAllAsTouched(); // Marca todos os campos como "tocados"
+  this.formulario.get('pagamento')?.updateValueAndValidity(); // Atualiza a validade do campo "pagamento"
 
-    if (this.formulario.invalid) {
-      console.log('Formulário inválido:', this.formulario.value);
-      return;
-    }
+  if (this.formulario.invalid) {
+    console.log('Formulário inválido:', this.formulario.value);
+    alert('Preencha todos os campos obrigatórios corretamente.');
+    return;
+  }
 
-    // Capturar todos os dados, incluindo campos desabilitados
-    const dados = this.formulario.getRawValue();
-    console.log('Enviando dados para API:', dados);
+  // Capturar todos os dados, incluindo campos desabilitados
+  const dados = this.formulario.getRawValue();
+  console.log('Enviando dados para API:', dados);
 
-    // Enviar para a API chamando a funcão na Service
-    this.clienteService.cadastrarClientes(dados).subscribe({
-      next: (response) => {
-        console.log('Dados enviados com sucesso!', response);
-        alert('Cadastro realizado com sucesso!');
+  // Enviar para a API chamando a função na Service
+  this.clienteService.cadastrarClientes(dados).subscribe({
+    next: (response) => {
+      console.log('Dados enviados com sucesso!', response);
+      alert('Cadastro realizado com sucesso!');
 
-        // Redireciona o usuário para outra página após sucesso , usando Router chamado lá no import e no contrutor
-        this.router.navigate(['/revista']); // Substitua '/outra-pagina' pelo caminho desejado
-      },
-      error: (error) => {
-        console.error('Erro ao cadastrar usuário:', error);
+      // Redireciona o usuário para outra página após sucesso
+      this.router.navigate(['/revista']); // Substitua '/revista' pelo caminho desejado
+    },
+    error: (error) => {
+      console.error('Erro ao cadastrar usuário:', error);
 
-        // Aqui, tratei os erros vindos do backend
-        if (error.status === 400) {
-          // Erro de e-mail já cadastrado
-          alert(error.error.error || 'E-mail já cadastrado. Tente outro.');
-        } else if (error.status === 500) {
-          // Erro do servidor
+      // Tratamento de erros baseado no status code
+      switch (error.status) {
+        case 409: // Conflito (e-mail já cadastrado)
+          alert(error.error?.error || 'E-mail já cadastrado. Tente outro.');
+          break;
+
+        case 400: // Erro de validação ou requisição inválida
           alert(
-            error.error.error ||
+            error.error?.error ||
+              'Erro de validação. Verifique os dados e tente novamente.'
+          );
+          break;
+
+        case 500: // Erro interno do servidor
+          alert(
+            error.error?.error ||
               'Erro interno do servidor. Tente novamente mais tarde.'
           );
-        } else {
-          // Outros erros
-          alert('Erro ao cadastrar usuário. Tente novamente.');
-        }
-      },
-    });
-  }
+          break;
+
+        default: // Outros erros
+          alert(
+            error.error?.error ||
+              'Erro ao cadastrar usuário. Tente novamente mais tarde.'
+          );
+          break;
+      }
+    },
+  });
+}
 }

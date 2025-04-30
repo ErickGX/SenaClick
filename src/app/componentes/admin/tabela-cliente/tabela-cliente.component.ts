@@ -116,6 +116,7 @@ export class TabelaClienteComponent implements OnInit {
         this.clientes = data;
       },
       error: (error) => {
+        alert("Erro ao carregar os clientes. Tente novamente mais tarde.");
         console.error('Erro ao buscar clientes:', error);
       },
       complete: () => {

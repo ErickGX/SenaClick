@@ -71,6 +71,7 @@ export class FormAdminComponent implements OnInit {
 
       // `error` é chamado se houver algum erro na requisição (exemplo: erro 404 ou problema no servidor)
       error: (error) => {
+        alert("Erro ao carregar os planos. Tente novamente mais tarde.");
         console.error('Erro ao buscar planos:', error);
       },
 
