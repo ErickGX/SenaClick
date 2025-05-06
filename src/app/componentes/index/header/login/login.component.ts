@@ -16,14 +16,11 @@
 //     this.mostrarFormulario = !this.mostrarFormulario;
 //   }
 
-
 // }
-
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Importando o FormBuilder
 import { AdminService } from '../../../../services/admin/admin.service';
@@ -49,7 +46,7 @@ export class LoginComponent {
     // Definindo os controles do formulário com validação
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -59,49 +56,56 @@ export class LoginComponent {
 
   // Método que será chamado quando o formulário for submetido
   onSubmit(): void {
-
-
     if (this.loginForm.invalid) {
-      console.log('Formulário ADMIN inválido:', this.loginForm.getRawValue());
+      // console.log('Formulário ADMIN inválido:', this.loginForm.getRawValue());
       return; // Não faz nada se o formulário for inválido
     }
 
     const dados = this.loginForm.value;
 
-    console.log('FILHO DA PUTA:', JSON.stringify(dados, null, 2));
+    //console.log('FILHO DA PUTA:', JSON.stringify(dados, null, 2));
 
-      // Enviar para a API chamando a funcão na Service
-      this.adminService.loginAdmin(dados).subscribe({
-        next: (response) => {
-          console.log('Dados enviados com sucesso!', response);
-          alert('Login realizado com sucesso!');
+    // Enviar para a API chamando a funcão na Service
+    this.adminService.loginAdmin(dados).subscribe({
+      next: (response) => {
+        // console.log('Dados enviados com sucesso!', response);
+        alert('Login realizado com sucesso!');
 
-          // Redireciona o usuário para outra página após sucesso , usando Router chamado lá no import e no contrutor
-          this.router.navigate(['/admin']); // Substitua '/outra-pagina' pelo caminho desejado
-        },
-        error: (error) => {
+        // Redireciona o usuário para outra página após sucesso , usando Router chamado lá no import e no contrutor
+        this.router.navigate(['/admin']); // Substitua '/outra-pagina' pelo caminho desejado
+      },
+      error: (error) => {
+        //console.log('Dados recebidos no TS:', JSON.stringify(dados, null, 2));
+        console.error('Erro ao logar :', error);
 
-         console.log('Dados recebidos no TS:', JSON.stringify(dados, null, 2));
-
-
-          console.error('Erro ao logar :', error);
-
-          // Aqui, tratei os erros vindos do backend
-          if (error.status === 404) {
-            // Erro de e-mail já cadastrado
-            alert(error.error.error || 'Admin Inexistente, Tente novamente');
-          } else if (error.status === 401) {
-            // Erro do servidor
+        // Tratamento de erros com base no status code
+        switch (error.status) {
+          case 400:
             alert(
-              error.error.error || 'Senha incorreta'
+              error.error.message ||
+                'Requisição inválida. Verifique os dados e tente novamente.'
             );
-          } else {
-            // Outros erros
-            alert('Erro ao logar admin');
-          }
-        },
-      });
-
-
+            break;
+          case 401:
+            alert(error.error.error || 'Senha incorreta. Tente novamente.');
+            break;
+          case 404:
+            alert(
+              error.error.error ||
+                'Email não encontrado. Verifique e tente novamente.'
+            );
+            break;
+          case 500:
+            alert(
+              error.error.error ||
+                'Erro interno do servidor. Tente novamente mais tarde.'
+            );
+            break;
+          default:
+            alert('Ocorreu um erro inesperado. Tente novamente.');
+            break;
+        }
+      },
+    });
   }
 }
