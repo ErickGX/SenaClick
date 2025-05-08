@@ -6,53 +6,56 @@
         <i class="fa-solid fa-code"></i>
         <h4>Painel</h4>
       </div>
-      <button (click)="mostrarTabela('assinaturas')">Assinatura</button>
-      <button (click)="mostrarTabela('planos')">Plano</button>
+      <button (click)="mostrarTabela('assinaturas')">Assinaturas</button>
+      <button (click)="mostrarTabela('planos')">Planos</button>
       <button (click)="mostrarTabela('clientes')">Clientes</button>
     </div>
 
 
     <div class="dados">
-      <div class="tabelaContainer"> 
-        
+      <div class="tabelaContainer">
+
 
         <div *ngIf="exibirTabela === 'assinaturas'">
-          <table mat-table [dataSource]="assinaturas" class="mat-elevation-z8 ">
 
-            <ng-container matColumnDef="ID Plano"> 
-              <th mat-header-cell *matHeaderCellDef>ID Plano</th>
-              <td mat-cell *matCellDef="let assinatura"> {{ assinatura.id }} </td>
+          <table mat-table [dataSource]="dataSourceAssinaturas" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="ID Assinatura">
+              <th mat-header-cell *matHeaderCellDef>ID Assinatura</th>
+              <td mat-cell *matCellDef="let assinatura"> {{ assinatura.id_cliente_plano }} </td>
             </ng-container>
-          
+
             <ng-container matColumnDef="Nome">
               <th mat-header-cell *matHeaderCellDef> Nome </th>
               <td mat-cell *matCellDef="let assinatura"> {{ assinatura.nome }} </td>
             </ng-container>
-          
+
             <ng-container matColumnDef="Titulo">
               <th mat-header-cell *matHeaderCellDef> Titulo </th>
               <td mat-cell *matCellDef="let assinatura"> {{ assinatura.titulo }} </td>
             </ng-container>
-          
+
             <ng-container matColumnDef="Pagamento">
               <th mat-header-cell *matHeaderCellDef> Pagamento </th>
               <td mat-cell *matCellDef="let assinatura"> {{ assinatura.pagamento }} </td>
             </ng-container>
-           
+
             <ng-container matColumnDef="Preço">
               <th mat-header-cell *matHeaderCellDef> Preço </th>
               <td mat-cell *matCellDef="let assinatura"> {{ assinatura.preco }} </td>
             </ng-container>
-  
+
             <ng-container matColumnDef="Data da Assinatura">
               <th mat-header-cell *matHeaderCellDef> Data da Assinatura </th>
               <td mat-cell *matCellDef="let assinatura"> {{ assinatura.data_assinatura }} </td>
             </ng-container>
-          
-            <tr mat-header-row *matHeaderRowDef="nomesColunas"></tr>
-            <tr mat-row *matRowDef="let row; columns: nomesColunas;"></tr>
-          
+
+            <tr mat-header-row *matHeaderRowDef="nomesColunasAssinaturas"></tr>
+            <tr mat-row *matRowDef="let row; columns: nomesColunasAssinaturas;"></tr>
           </table>
+
+          <!-- Adicione o paginador -->
+          <mat-paginator #paginatorAssinaturas [pageSize]="5" [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
         </div> <!-- Fecha a segunda div.container -->
 
         <app-tabela-cliente *ngIf="exibirTabela === 'clientes'"></app-tabela-cliente>

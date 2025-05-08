@@ -7,6 +7,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator'; // Adicione esta importação
+
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { ViewChild } from '@angular/core';
+
+
+
 
 @Component({
   selector: 'app-tabela-cliente',
@@ -19,6 +27,8 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatPaginatorModule,
+    MatPaginator,
   ],
   templateUrl: './tabela-cliente.component.html',
   styleUrls: ['./tabela-cliente.component.css'], // Corrigido para 'styleUrls'
@@ -28,6 +38,12 @@ export class TabelaClienteComponent implements OnInit {
   // Lista de clientes carregada da API
   clientes: any[] = [];
 
+  // DataSource para a tabela
+  dataSource = new MatTableDataSource<any>();
+
+  // Referência ao MatPaginator
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   // ID do cliente que será excluído
   idParaExcluir: number | null = null;
 
@@ -35,7 +51,14 @@ export class TabelaClienteComponent implements OnInit {
   clienteAtual: any = { id: null, nome: '', sobrenome: '' };
 
   // Nomes das colunas da tabela
-  nomesColunas: string[] = ['ID Cliente', 'Nome', 'Sobrenome', 'Email', 'atualizar', 'excluir'];
+  nomesColunas: string[] = [
+    'ID Cliente',
+    'Nome',
+    'Sobrenome',
+    'Email',
+    'atualizar',
+    'excluir',
+  ];
 
   // Injeta o serviço AdminService para realizar operações relacionadas aos clientes
   constructor(private admService: AdminService, private dialog: MatDialog) {}
@@ -71,7 +94,9 @@ export class TabelaClienteComponent implements OnInit {
       // Chama o serviço para excluir o cliente
       this.admService.excluirCliente(this.idParaExcluir).subscribe({
         next: () => {
-          console.log(`Cliente com ID ${this.idParaExcluir} excluído com sucesso.`);
+          console.log(
+           // `Cliente com ID ${this.idParaExcluir} excluído com sucesso.`
+          );
           this.carregarClientes(); // Atualiza a lista de clientes
         },
         error: (error) => {
@@ -90,14 +115,20 @@ export class TabelaClienteComponent implements OnInit {
    */
   atualizarCliente(): void {
     const { id, nome, sobrenome } = this.clienteAtual;
+    if (!nome || !sobrenome) {
+      alert('Preencha todos os campos obrigatórios!');
+      return;
+    }
+
+    // Verifica se os campos obrigatórios estão preenchidos
 
     if (id && nome && sobrenome) {
-      console.log('Atualizando cliente:', this.clienteAtual);
+     // console.log('Atualizando cliente:', this.clienteAtual);
 
       // Chama o serviço para atualizar o cliente
       this.admService.atualizarCliente(id, this.clienteAtual).subscribe({
         next: () => {
-          console.log(`Cliente com ID ${id} atualizado com sucesso.`);
+         // console.log(`Cliente com ID ${id} atualizado com sucesso.`);
           this.carregarClientes(); // Atualiza a lista de clientes
         },
         error: (error) => {
@@ -115,6 +146,11 @@ export class TabelaClienteComponent implements OnInit {
     this.carregarClientes();
   }
 
+  ngAfterViewInit(): void {
+    // Conecta o paginator ao dataSource
+    this.dataSource.paginator = this.paginator;
+  }
+
   /**
    * Método para carregar a lista de clientes da API.
    * Atualiza a variável 'clientes' com os dados recebidos.
@@ -122,15 +158,15 @@ export class TabelaClienteComponent implements OnInit {
   private carregarClientes(): void {
     this.admService.getClientes().subscribe({
       next: (data: any[]) => {
-        console.log('Clientes recebidos:', data);
-        this.clientes = data;
+       // console.log('Clientes recebidos:', data);
+        this.dataSource.data = data;
       },
       error: (error) => {
         alert('Erro ao carregar os clientes. Tente novamente mais tarde.');
         console.error('Erro ao buscar clientes:', error);
       },
       complete: () => {
-        console.log('Requisição de clientes concluída com sucesso.');
+       // console.log('Requisição de clientes concluída com sucesso.');
       },
     });
   }

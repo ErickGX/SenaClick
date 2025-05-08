@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../../services/admin/admin.service';
@@ -6,7 +6,10 @@ import { TabelaClienteComponent } from '../tabela-cliente/tabela-cliente.compone
 import { RouterModule, Router } from '@angular/router';
 import { TabelaPlanoComponent } from "../tabela-plano/tabela-plano.component";
 import { MatTableModule } from '@angular/material/table';
-
+import { MatPaginatorModule } from '@angular/material/paginator'; // Importação necessária
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-form-admin',
@@ -17,73 +20,74 @@ import { MatTableModule } from '@angular/material/table';
     RouterModule,
     TabelaClienteComponent,
     TabelaPlanoComponent,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule, // Adicione o módulo aqui
   ],
   templateUrl: './form-admin.component.html',
   styleUrl: './form-admin.component.css',
   encapsulation: ViewEncapsulation.None, // Desativa o encapsulamento de estilos (necessário apenas se houver problemas com o CSS do Bootstrap)
 })
-export class FormAdminComponent implements OnInit {
+export class FormAdminComponent implements OnInit, AfterViewInit {
   filtro: string = '';
 
   constructor(private admService: AdminService) {}
 
-  assinaturas: any[] = []; // Variável que armazenará os dados da API
-  nomesColunas: string[] = ['ID Plano', 'Nome', 'Titulo', 'Pagamento', 'Preço', 'Data da Assinatura'];
+  // DataSource para a tabela de assinaturas
+  dataSourceAssinaturas = new MatTableDataSource<any>();
 
+  // Referência ao MatPaginator
+  @ViewChild(MatPaginator) paginatorAssinaturas!: MatPaginator;
 
+  // Nomes das colunas da tabela de assinaturas
+  nomesColunasAssinaturas: string[] = [
+    'ID Assinatura',
+    'Nome',
+    'Titulo',
+    'Pagamento',
+    'Preço',
+    'Data da Assinatura',
+  ];
+
+  // Variável para controlar qual tabela exibir
   exibirTabela: 'assinaturas' | 'clientes' | 'planos' = 'assinaturas'; // padrão
 
-  mostrarTabela(tabela: 'assinaturas' | 'clientes' | 'planos') {
-    this.exibirTabela = tabela;
+  ngOnInit(): void {
+    this.carregarAssinaturas();
   }
-  // usuarios = [
-  //   {
-  //     nome: 'Vagner',
-  //     sobrenome: 'Beraldo',
-  //     email: 'vagner@gmail.com',
-  //     plano: 'Premium',
-  //   },
-  //   {
-  //     nome: 'Guilherme',
-  //     sobrenome: 'Kishida',
-  //     email: 'guilherme@gmail.com',
-  //     plano: 'Básico',
-  //   },
-  //   {
-  //     nome: 'Daiane',
-  //     sobrenome: 'Raso',
-  //     email: 'raso@gmail.com',
-  //     plano: 'Estudante',
-  //   },
-  //   { nome: 'Erik', sobrenome: 'GX', email: 'gx@gmail.com', plano: 'Premium' },
-  //   {
-  //     nome: 'Davi',
-  //     sobrenome: 'Roque',
-  //     email: 'roqueiro@gmail.com',
-  //     plano: 'Básico',
-  //   },
-  // ];
 
-  ngOnInit() {
+  ngAfterViewInit(): void {
+    // Apenas verifica se o paginator foi inicializado
+    if (this.paginatorAssinaturas) {
+      this.dataSourceAssinaturas.paginator = this.paginatorAssinaturas;
+    }
+  }
+
+  carregarAssinaturas(): void {
     this.admService.getAssinaturas().subscribe({
-      // `next` é chamado quando a requisição retorna com sucesso e recebe os dados da API
       next: (data: any[]) => {
-        //console.log('Dados recebidos:', data);
+        console.log('Assinaturas recebidas:', data);
+        this.dataSourceAssinaturas.data = data; // Atualiza o dataSource com os dados recebidos
 
-        this.assinaturas = data;
+        // Reconecta o paginator ao dataSource
+        if (this.paginatorAssinaturas) {
+          this.dataSourceAssinaturas.paginator = this.paginatorAssinaturas;
+        }
       },
-
-      // `error` é chamado se houver algum erro na requisição (exemplo: erro 404 ou problema no servidor)
       error: (error) => {
-        alert("Erro ao carregar os planos. Tente novamente mais tarde.");
-        console.error('Erro ao buscar planos:', error);
-      },
-
-      // `complete` é chamado quando o Observable finaliza, útil para executar ações após a requisição ser concluída
-      complete: () => {
-        console.log('Requisição concluída com sucesso.');
+        alert('Erro ao carregar as assinaturas. Tente novamente mais tarde.');
+        console.error('Erro ao buscar assinaturas:', error);
       },
     });
   }
+
+  mostrarTabela(tabela: 'assinaturas' | 'clientes' | 'planos'): void {
+    this.exibirTabela = tabela;
+
+   // Quando a tabela de assinaturas for exibida, recarregue os dados e conecte o paginator
+  if (tabela === 'assinaturas') {
+    setTimeout(() => {
+      this.carregarAssinaturas();
+    });
+  }
+}
 }

@@ -12,7 +12,7 @@ import { MatTableModule } from '@angular/material/table';
   templateUrl: './tabela-plano.component.html',
   styleUrl: './tabela-plano.component.css',
   encapsulation: ViewEncapsulation.None,
-}) 
+})
 export class TabelaPlanoComponent implements OnInit {
 dataSource: any;
   constructor(private adminService: AdminService) {}
@@ -36,7 +36,7 @@ dataSource: any;
 
       // `complete` é chamado quando o Observable finaliza, útil para executar ações após a requisição ser concluída
       complete: () => {
-        console.log('Requisição concluída com sucesso.');
+       // console.log('Requisição concluída com sucesso.');
       },
     });
   }

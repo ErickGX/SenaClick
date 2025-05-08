@@ -1,6 +1,6 @@
 <mat-card class="mat-elevation-z4">
-  <mat-table [dataSource]="clientes" class="mat-elevation-z2">
-
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+    <!-- Colunas da tabela -->
     <ng-container matColumnDef="ID Cliente">
       <mat-header-cell *matHeaderCellDef> ID Cliente </mat-header-cell>
       <mat-cell *matCellDef="let cliente"> {{ cliente.id }} </mat-cell>
@@ -42,11 +42,14 @@
     <mat-header-row *matHeaderRowDef="nomesColunas"></mat-header-row>
     <mat-row *matRowDef="let row; columns: nomesColunas;"></mat-row>
   </mat-table>
+
+  <!-- Paginador -->
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
 </mat-card>
 
 <!-- Dialog de Exclusão -->
 <ng-template #excluirDialog>
-  <h2 mat-dialog-title>Confirmar Exclusão</h2>
+  <h2 mat-dialog-title style="text-align: center;">Confirmar Exclusão</h2>
   <mat-dialog-content>
     Tem certeza que deseja excluir o cliente com ID <strong>{{ idParaExcluir }}</strong>?
   </mat-dialog-content>
@@ -58,19 +61,22 @@
 
 <!-- Dialog de Atualização -->
 <ng-template #atualizarDialog>
-  <h2 mat-dialog-title>Atualizar Cliente</h2>
+  <h2 mat-dialog-title style="text-align: center;">Atualizar Cliente</h2>
   <mat-dialog-content>
-    <mat-form-field appearance="fill" class="w-100">
-      <mat-label>Nome</mat-label>
-      <input matInput [(ngModel)]="clienteAtual.nome">
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="w-100">
-      <mat-label>Sobrenome</mat-label>
-      <input matInput [(ngModel)]="clienteAtual.sobrenome">
-    </mat-form-field>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="clienteAtual.nome">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Sobrenome</mat-label>
+        <input matInput [(ngModel)]="clienteAtual.sobrenome">
+      </mat-form-field>
+    </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancelar</button>
     <button mat-button color="primary" (click)="atualizarCliente()" mat-dialog-close>Salvar</button>
   </mat-dialog-actions>
 </ng-template>
+
