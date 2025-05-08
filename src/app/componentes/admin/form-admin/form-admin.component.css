@@ -1,4 +1,7 @@
-@import url('../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css');
+table {
+  width: 100%;
+}
+
 /* Estilo geral */
 section {
   padding: 20px;
@@ -14,6 +17,7 @@ section {
   color: #343a40;
   /* Cor escura para contraste */
   margin-bottom: 20px;
+  margin-top: 40px;
   text-align: center;
 }
 
@@ -94,11 +98,7 @@ button:hover {
   font-size: 1rem;
 }
 
-.container.mt-4{
-  justify-content: center;
-    align-items: center;
-    width: 80%;
-} 
+
 
 .filtro:focus {
   border-color: #007bff;
@@ -113,16 +113,6 @@ th, td {
 }
 
 
-.table-responsive {
-  max-height: 500px; /* Altura máxima da tabela */
-  overflow-y: auto; /* Adiciona rolagem vertical */
-}
-
-thead.sticky-top {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
 /* Responsividade */
 @media (max-width: 768px) {
   .container {

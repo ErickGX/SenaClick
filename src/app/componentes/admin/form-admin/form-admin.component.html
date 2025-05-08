@@ -3,7 +3,7 @@
   <div class="container">
     <div class="controles">
       <div class="painel">
-        <i class="fa fa-hamburger"></i>
+        <i class="fa-solid fa-code"></i>
         <h4>Painel</h4>
       </div>
       <button (click)="mostrarTabela('assinaturas')">Assinatura</button>
@@ -13,38 +13,46 @@
 
 
     <div class="dados">
-      <div class="tabelaContainer">
-        <div class="consulta">
-          <p>Consulta: </p>
-          <input type="text" [(ngModel)]="filtro" placeholder="Buscar usuário..." class="filtro" />
-        </div>
+      <div class="tabelaContainer"> 
+        
 
-        <div class="container mt-4" *ngIf="exibirTabela === 'assinaturas'">
-          <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered">
+        <div *ngIf="exibirTabela === 'assinaturas'">
+          <table mat-table [dataSource]="assinaturas" class="mat-elevation-z8 ">
 
-            <thead class="table-dark">
-                <tr>
-                  <th>ID Plano</th>
-                  <th>Nome</th>
-                  <th>Título</th>
-                  <th>Pagamento</th>
-                  <th>Preço</th>
-                  <th>Data da Assinatura</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of assinaturas">
-                  <td>{{ item.id }}</td>
-                  <td>{{ item.nome }}</td>
-                  <td>{{ item.titulo }}</td>
-                  <td>{{ item.pagamento }}</td>
-                  <td>R$ {{ item.preco }}</td>
-                  <td>{{ item.data_assinatura }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+            <ng-container matColumnDef="ID Plano"> 
+              <th mat-header-cell *matHeaderCellDef>ID Plano</th>
+              <td mat-cell *matCellDef="let assinatura"> {{ assinatura.id }} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="Nome">
+              <th mat-header-cell *matHeaderCellDef> Nome </th>
+              <td mat-cell *matCellDef="let assinatura"> {{ assinatura.nome }} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="Titulo">
+              <th mat-header-cell *matHeaderCellDef> Titulo </th>
+              <td mat-cell *matCellDef="let assinatura"> {{ assinatura.titulo }} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="Pagamento">
+              <th mat-header-cell *matHeaderCellDef> Pagamento </th>
+              <td mat-cell *matCellDef="let assinatura"> {{ assinatura.pagamento }} </td>
+            </ng-container>
+           
+            <ng-container matColumnDef="Preço">
+              <th mat-header-cell *matHeaderCellDef> Preço </th>
+              <td mat-cell *matCellDef="let assinatura"> {{ assinatura.preco }} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="Data da Assinatura">
+              <th mat-header-cell *matHeaderCellDef> Data da Assinatura </th>
+              <td mat-cell *matCellDef="let assinatura"> {{ assinatura.data_assinatura }} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="nomesColunas"></tr>
+            <tr mat-row *matRowDef="let row; columns: nomesColunas;"></tr>
+          
+          </table>
         </div> <!-- Fecha a segunda div.container -->
 
         <app-tabela-cliente *ngIf="exibirTabela === 'clientes'"></app-tabela-cliente>

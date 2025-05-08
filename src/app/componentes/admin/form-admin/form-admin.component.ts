@@ -5,6 +5,8 @@ import { AdminService } from '../../../services/admin/admin.service';
 import { TabelaClienteComponent } from '../tabela-cliente/tabela-cliente.component';
 import { RouterModule, Router } from '@angular/router';
 import { TabelaPlanoComponent } from "../tabela-plano/tabela-plano.component";
+import { MatTableModule } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-form-admin',
@@ -15,6 +17,7 @@ import { TabelaPlanoComponent } from "../tabela-plano/tabela-plano.component";
     RouterModule,
     TabelaClienteComponent,
     TabelaPlanoComponent,
+    MatTableModule
   ],
   templateUrl: './form-admin.component.html',
   styleUrl: './form-admin.component.css',
@@ -26,6 +29,8 @@ export class FormAdminComponent implements OnInit {
   constructor(private admService: AdminService) {}
 
   assinaturas: any[] = []; // Variável que armazenará os dados da API
+  nomesColunas: string[] = ['ID Plano', 'Nome', 'Titulo', 'Pagamento', 'Preço', 'Data da Assinatura'];
+
 
   exibirTabela: 'assinaturas' | 'clientes' | 'planos' = 'assinaturas'; // padrão
 

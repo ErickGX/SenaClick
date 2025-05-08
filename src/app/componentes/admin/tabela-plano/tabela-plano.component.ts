@@ -3,19 +3,22 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../../services/admin/admin.service';
 import { RouterModule, Router } from '@angular/router';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-tabela-plano-crud',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, MatTableModule],
   templateUrl: './tabela-plano.component.html',
   styleUrl: './tabela-plano.component.css',
   encapsulation: ViewEncapsulation.None,
-})
+}) 
 export class TabelaPlanoComponent implements OnInit {
+dataSource: any;
   constructor(private adminService: AdminService) {}
 
   planoscrud: any[] = []; // Certifique-se de que a propriedade está declarada
+  nomesColunas: string[] = ['id', 'titulo', 'preco', 'artigo', 'noticia'];
 
   ngOnInit(): void {
     this.adminService.getPlanosCrud().subscribe({
