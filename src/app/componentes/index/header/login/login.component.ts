@@ -68,10 +68,14 @@ export class LoginComponent {
     // Enviar para a API chamando a funcão na Service
     this.adminService.loginAdmin(dados).subscribe({
       next: (response) => {
+        // Armazena o token no localStorage
+        localStorage.setItem('authToken', response.token);
+
         // console.log('Dados enviados com sucesso!', response);
         alert('Login realizado com sucesso!');
 
-        // Redireciona o usuário para outra página após sucesso , usando Router chamado lá no import e no contrutor
+        // Redireciona o usuário para outra página após sucesso
+        // , usando Router chamado lá no import e no contrutor
         this.router.navigate(['/admin']); // Substitua '/outra-pagina' pelo caminho desejado
       },
       error: (error) => {
