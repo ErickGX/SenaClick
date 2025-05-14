@@ -25,6 +25,8 @@ import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Importando o FormBuilder
 import { AdminService } from '../../../../services/admin/admin.service';
 import { ReactiveFormsModule } from '@angular/forms'; //Faltando import do reactive module
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-login',
@@ -36,13 +38,19 @@ import { ReactiveFormsModule } from '@angular/forms'; //Faltando import do react
 export class LoginComponent {
   mostrarFormulario: boolean = false;
   loginForm: FormGroup;
+  
 
   // Injectando a service de autenticação e FormBuilder
   constructor(
     private fb: FormBuilder,
     private adminService: AdminService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar // Injetando o MatSnackBar
+
+    
   ) {
+    
+    
     // Definindo os controles do formulário com validação
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -50,10 +58,13 @@ export class LoginComponent {
     });
   }
 
+  
+
   toggleFormulario(): void {
     this.mostrarFormulario = !this.mostrarFormulario;
   }
 
+  
   // Método que será chamado quando o formulário for submetido
   onSubmit(): void {
     if (this.loginForm.invalid) {
@@ -72,7 +83,13 @@ export class LoginComponent {
         localStorage.setItem('authToken', response.token);
 
         // console.log('Dados enviados com sucesso!', response);
-        alert('Login realizado com sucesso!');
+       // alert('Login realizado com sucesso!');
+
+        this.snackBar.open('Login realizado com Sucesso.', 'OK', {
+        duration: 5000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
 
         // Redireciona o usuário para outra página após sucesso
         // , usando Router chamado lá no import e no contrutor
@@ -85,19 +102,36 @@ export class LoginComponent {
         // Tratamento de erros com base no status code
         switch (error.status) {
           case 400:
-            alert(
-              error.error.message ||
-                'Requisição inválida. Verifique os dados e tente novamente.'
-            );
+            // alert(
+            //   error.error.message ||
+            //     'Requisição inválida. Verifique os dados e tente novamente.'
+            // );
+
+              this.snackBar.open('Requisição inválida. Verifique os dados e tente novamente.', 'Fechar', {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            });
             break;
           case 401:
-            alert(error.error.error || 'Senha incorreta. Tente novamente.');
+            //alert(error.error.error || 'Senha incorreta. Tente novamente.');
+            this.snackBar.open('Senha incorreta. Tente novamente.', 'Fechar', {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            });
+            
             break;
           case 404:
-            alert(
-              error.error.error ||
-                'Email não encontrado. Verifique e tente novamente.'
-            );
+            // alert(
+            //   error.error.error ||
+            //     'Email não encontrado. Verifique e tente novamente.'
+            // );
+             this.snackBar.open('Email não encontrado. Verifique e tente novamente.', 'Fechar', {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            });
             break;
           case 500:
             alert(
